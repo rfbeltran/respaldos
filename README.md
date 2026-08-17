@@ -91,6 +91,36 @@ archivos ignorados por git, por lo dicho arriba.
 
 ---
 
+## El procedimiento está ensayado de punta a punta
+
+No es teoría: el 2026-08-16 se creó el primer respaldo de `Mejoras_Claude-Cli` y
+**se restauró desde el bundle** para comprobar que el camino de vuelta funciona.
+
+| Comprobación | Resultado |
+|---|---|
+| `git bundle verify` | *The bundle records a complete history* |
+| Clonado del bundle a un directorio limpio | ✅ sin errores |
+| Commits recuperados | **42**, los mismos que el original |
+| SHA del último commit | **idéntico** al original (`c90a4af…`) |
+| Archivos versionados | 12, los mismos |
+| Archivos ignorados por git recuperados | **0** — como debe ser |
+| Tamaño del bundle | 108 KB |
+| Tamaño del tar equivalente | 416 KB, 262 archivos |
+
+Dos cosas que este ensayo deja medidas, no supuestas:
+
+**El bundle no lleva nada ignorado.** Cero archivos `.local` en lo restaurado.
+Por eso puede salir de la máquina sin violar el §7, y por eso el tar no puede.
+
+**El tar pesa cuatro veces más que el bundle** porque lleva cosas distintas: el
+`.git` empaquetado y el árbol de trabajo completo, incluidos los archivos que
+git ignora. No se sustituyen entre sí; cada uno cubre un fallo.
+
+> ⚠️ **`verify` no basta.** Comprueba que el archivo está íntegro, no que sepas
+> restaurarlo. La única comprobación que no puede dar un falso positivo es
+> clonar el bundle y contar lo que sale. Al crear un respaldo importante,
+> hazlo.
+
 ## Pendientes
 
 Formato del listado —casillas, numeración que no se recicla, fechas y
