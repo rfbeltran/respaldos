@@ -1,0 +1,6 @@
+# Los tar NO se versionan: contienen los archivos que .gitignore excluye en los
+# repos de origen, es decir datos privados. Ver README.md y CLAUDE.md.global §7.
+*.tar
+*.tar.gz
+*.tgz
+*.local*
