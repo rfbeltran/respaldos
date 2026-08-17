@@ -91,6 +91,16 @@ archivos ignorados por git, por lo dicho arriba.
 
 ---
 
+## Pendientes
+
+Formato del listado —casillas, numeración que no se recicla, fechas y
+comentarios que se añaden en vez de sustituir— en `CLAUDE.md.global` §5. Contar
+es directo: `grep -c '^- \[ \]' README.md`.
+
+*Ninguno abierto por ahora.*
+
+---
+
 ## Por qué un repo aparte y no un bundle dentro de cada repo
 
 Porque el tamaño se dispararía. Un bundle contiene la historia entera, incluidos
